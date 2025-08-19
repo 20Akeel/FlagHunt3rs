@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Flag Hunt3rs</title>
+  <link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+</head>
+
+<body>
+  <!-- Authenticated User Navigation -->
+  <nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <h2><span id="userWelcome">Welcome, <span id="userName"></span>!</span></h2>
+    </div>
+    <div class="nav-menu">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="challenge.html" class="nav-link">Challenges</a>
+      <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+      <a href="about-developers.html" class="nav-link">About Developer</a>
+      <a href="javascript:void(0)" onclick="showProfile()" class="nav-link">Profile</a>
+      <a href="javascript:void(0)" onclick="signOut()" class="nav-link">Sign Out</a>
+    </div>
+  </div>
+</nav>
+
+  <div class="container" style="padding-top: 100px;">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-avatar-large" id="profileAvatar">
+        <!-- Avatar will be generated -->
+      </div>
+      <div class="profile-info">
+        <h1 id="profileName">Loading...</h1>
+        <p class="profile-email" id="profileEmail">Loading...</p>
+        <p class="profile-join-date">Member since <span id="profileJoinDate">Loading...</span></p>
+        <div class="profile-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="totalScore">0</span>
+            <span class="stat-label">Total Points</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="totalSolved">0</span>
+            <span class="stat-label">Challenges Solved</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="userRank">-</span>
+            <span class="stat-label">Global Rank</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-primary" onclick="showEditProfile()">Edit Profile</button>
+        <button class="btn-secondary" onclick="downloadProgress()">Export Progress</button>
+      </div>
+    </div>
+
+    <!-- Achievement Badges -->
+    <div class="achievements-section">
+      <h2>Achievements</h2>
+      <div class="achievements-grid" id="achievementsGrid">
+        <!-- Achievements will be loaded dynamically -->
+      </div>
+    </div>
+
+    <!-- Progress Overview -->
+    <div class="progress-section">
+      <h2>Challenge Progress</h2>
+      <div class="difficulty-progress">
+        <div class="difficulty-card easy">
+          <div class="difficulty-header">
+            <h3>Easy Challenges</h3>
+            <span class="progress-fraction" id="easyProgress">0/2</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="easyProgressBar"></div>
+          </div>
+          <div class="progress-details">
+            <span id="easyPoints">0 points earned</span>
+          </div>
+        </div>
+
+        <div class="difficulty-card medium">
+          <div class="difficulty-header">
+            <h3>Medium Challenges</h3>
+            <span class="progress-fraction" id="mediumProgress">0/3</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="mediumProgressBar"></div>
+          </div>
+          <div class="progress-details">
+            <span id="mediumPoints">0 points earned</span>
+          </div>
+        </div>
+
+        <div class="difficulty-card hard">
+          <div class="difficulty-header">
+            <h3>Hard Challenges</h3>
+            <span class="progress-fraction" id="hardProgress">0/2</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="hardProgressBar"></div>
+          </div>
+          <div class="progress-details">
+            <span id="hardPoints">0 points earned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="activity-section">
+      <h2>Recent Activity</h2>
+      <div class="activity-timeline" id="activityTimeline">
+        <!-- Activity items will be loaded dynamically -->
+      </div>
+    </div>
+
+    <!-- Solved Challenges Details -->
+    <div class="challenges-section">
+      <h2>Solved Challenges</h2>
+      <div class="challenges-list" id="challengesList">
+        <!-- Solved challenges will be loaded dynamically -->
+      </div>
+    </div>
+
+    <!-- Performance Chart -->
+    <div class="chart-section">
+      <h2>Performance Overview</h2>
+      <div class="chart-container">
+        <canvas id="performanceChart" width="400" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div id="editProfileModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Edit Profile</h3>
+        <span class="close" onclick="closeModal('editProfileModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="editProfileForm">
+          <div class="form-group">
+            <label for="editName">Full Name</label>
+            <input type="text" id="editName" required>
+          </div>
+          <div class="form-group">
+            <label for="editEmail">Email</label>
+            <input type="email" id="editEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="editBio">Bio (Optional)</label>
+            <textarea id="editBio" rows="3" placeholder="Tell us about yourself..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" onclick="closeModal('editProfileModal')">Cancel</button>
+            <button type="submit" class="btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global variables
+    let currentUser = null;
+    let allUsers = [];
+
+    // Challenge points and names mapping
+    const challengePoints = {
+      'easy-1': 100,
+      'easy-2': 150,
+      'medium-1': 200,
+      'medium-2': 250,
+      'medium-3': 300,
+      'hard-1': 400,
+      'hard-2': 500
+    };
+
+    const challengeNames = {
+      'easy-1': 'Logic Flaw Exploitation',
+      'easy-2': 'Base64 Decoding',
+      'medium-1': 'Hidden JavaScript Function',
+      'medium-2': 'SQL Injection Basics',
+      'medium-3': 'Cookie Manipulation',
+      'hard-1': 'Cross-Site Scripting (XSS)',
+      'hard-2': 'Advanced Authentication Bypass'
+    };
+
+    // Achievement definitions
+    const achievements = [
+      {
+        id: 'first_blood',
+        name: 'First Blood',
+        description: 'Solve your first challenge',
+        icon: '🩸',
+        condition: (user) => (user.solvedChallenges || []).length >= 1
+      },
+      {
+        id: 'easy_master',
+        name: 'Easy Master',
+        description: 'Complete all easy challenges',
+        icon: '🟢',
+        condition: (user) => {
+          const easySolved = (user.solvedChallenges || []).filter(c => c.challengeId.startsWith('easy'));
+          return easySolved.length >= 2;
+        }
+      },
+      {
+        id: 'medium_master',
+        name: 'Medium Master',
+        description: 'Complete all medium challenges',
+        icon: '🟡',
+        condition: (user) => {
+          const mediumSolved = (user.solvedChallenges || []).filter(c => c.challengeId.startsWith('medium'));
+          return mediumSolved.length >= 3;
+        }
+      },
+      {
+        id: 'hard_master',
+        name: 'Hard Master',
+        description: 'Complete all hard challenges',
+        icon: '🔴',
+        condition: (user) => {
+          const hardSolved = (user.solvedChallenges || []).filter(c => c.challengeId.startsWith('hard'));
+          return hardSolved.length >= 2;
+        }
+      },
+      {
+        id: 'perfectionist',
+        name: 'Perfectionist',
+        description: 'Complete all challenges',
+        icon: '🏆',
+        condition: (user) => (user.solvedChallenges || []).length >= 7
+      },
+      {
+        id: 'speed_demon',
+        name: 'Speed Demon',
+        description: 'Solve 3 challenges in one day',
+        icon: '⚡',
+        condition: (user) => {
+          const challenges = user.solvedChallenges || [];
+          const today = new Date().toDateString();
+          const todayChallenges = challenges.filter(c => 
+            new Date(c.timestamp).toDateString() === today
+          );
+          return todayChallenges.length >= 3;
+        }
+      },
+      {
+        id: 'point_collector',
+        name: 'Point Collector',
+        description: 'Earn 1000+ points',
+        icon: '💎',
+        condition: (user) => {
+          const totalPoints = (user.solvedChallenges || []).reduce((sum, c) => {
+            const earned = (typeof c.points === 'number')
+              ? c.points
+              : (challengePoints[c.challengeId] || 0);
+            return sum + earned;
+          }, 0);
+          return totalPoints >= 1000;
+        }
+      },
+      {
+        id: 'early_bird',
+        name: 'Early Bird',
+        description: 'Join the platform (Welcome!)',
+        icon: '🐦',
+        condition: (user) => true // Everyone gets this
+      }
+    ];
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check authentication with backend instead of localStorage
+      checkAuthStatus();
+    });
+
+    // NEW: Check authentication status with backend
+    async function checkAuthStatus() {
+      try {
+        const response = await fetch('/auth/status');
+        const data = await response.json();
+        
+        if (data.loggedIn) {
+          currentUser = { 
+            name: data.username,
+            username: data.username,
+            id: data.userId || data.username,
+            email: data.email || '',
+            joinDate: data.joinDate || new Date().toISOString(),
+            solvedChallenges: data.solvedChallenges || [],
+            bio: data.bio || ''
+          };
+          
+          allUsers = await fetchUsersData();
+          
+          // Load profile data
+          loadProfileData();
+          loadAchievements();
+          loadProgressData();
+          loadRecentActivity();
+          loadSolvedChallenges();
+          createPerformanceChart();
+        } else {
+          // Not authenticated, redirect to login
+          window.location.href = 'index.html';
+          return;
+        }
+      } catch (error) {
+        console.error('Error checking auth status:', error);
+        // Fallback to redirect if can't check auth
+        window.location.href = 'index.html';
+      }
+    }
+
+    // NEW: Fetch users data from backend
+    async function fetchUsersData() {
+      try {
+        const response = await fetch('/auth/users'); // You'll need to create this endpoint
+        if (response.ok) {
+          const data = await response.json();
+          return data.users || [];
+        }
+      } catch (error) {
+        console.error('Error fetching users from backend:', error);
+      }
+      
+      // Fallback to localStorage if backend is not available
+      return JSON.parse(localStorage.getItem('users') || '[]');
+    }
+
+    // Load profile data
+    function loadProfileData() {
+      document.getElementById('userName').textContent = currentUser.username;
+      document.getElementById('profileName').textContent = currentUser.username;
+      document.getElementById('profileEmail').textContent = currentUser.email;
+      document.getElementById('profileJoinDate').textContent = formatDate(currentUser.joinDate);
+      
+      // Set avatar
+      const avatar = document.getElementById('profileAvatar');
+      avatar.textContent = currentUser.username.charAt(0).toUpperCase();
+      
+      // Calculate stats
+      const solvedChallenges = currentUser.solvedChallenges || [];
+      const totalScore = solvedChallenges.reduce((sum, challenge) => {
+        const earned = (typeof challenge.points === 'number')
+          ? challenge.points
+          : (challengePoints[challenge.challengeId] || 0);
+        return sum + earned;
+      }, 0);
+      
+      document.getElementById('totalScore').textContent = totalScore;
+      document.getElementById('totalSolved').textContent = solvedChallenges.length;
+      
+      // Calculate rank
+      const userRank = calculateUserRank(currentUser.id);
+      document.getElementById('userRank').textContent = userRank > 0 ? `#${userRank}` : '-';
+    }
+
+    // Calculate user rank
+    function calculateUserRank(userId) {
+      const usersWithScores = allUsers.map(user => {
+        const solvedChallenges = user.solvedChallenges || [];
+        const totalScore = solvedChallenges.reduce((sum, challenge) => {
+          const earned = (typeof challenge.points === 'number')
+            ? challenge.points
+            : (challengePoints[challenge.challengeId] || 0);
+          return sum + earned;
+        }, 0);
+        return { ...user, totalScore, totalSolved: solvedChallenges.length };
+      });
+      
+      // Sort by score, then by challenges solved
+      usersWithScores.sort((a, b) => b.totalScore - a.totalScore || b.totalSolved - a.totalSolved);
+      
+      const userIndex = usersWithScores.findIndex(user => 
+        user.id === userId || user.username === userId
+      );
+      return userIndex + 1;
+    }
+
+    // Load achievements
+    function loadAchievements() {
+      const achievementsGrid = document.getElementById('achievementsGrid');
+      achievementsGrid.innerHTML = '';
+      
+      achievements.forEach(achievement => {
+        const isUnlocked = achievement.condition(currentUser);
+        const achievementElement = document.createElement('div');
+        achievementElement.className = `achievement-badge ${isUnlocked ? 'unlocked' : 'locked'}`;
+        
+        achievementElement.innerHTML = `
+          <div class="achievement-icon">${achievement.icon}</div>
+          <div class="achievement-info">
+            <h4>${achievement.name}</h4>
+            <p>${achievement.description}</p>
+          </div>
+          ${isUnlocked ? '<div class="achievement-checkmark">✓</div>' : ''}
+        `;
+        
+        achievementsGrid.appendChild(achievementElement);
+      });
+    }
+
+    // Load progress data
+    function loadProgressData() {
+      const solvedChallenges = currentUser.solvedChallenges || [];
+      
+      // Easy challenges
+      const easySolved = solvedChallenges.filter(c => c.challengeId.startsWith('easy'));
+      const easyPoints = easySolved.reduce((sum, c) => {
+        const earned = (typeof c.points === 'number') ? c.points : (challengePoints[c.challengeId] || 0);
+        return sum + earned;
+      }, 0);
+      const easyProgress = (easySolved.length / 2) * 100;
+      
+      document.getElementById('easyProgress').textContent = `${easySolved.length}/2`;
+      document.getElementById('easyProgressBar').style.width = `${easyProgress}%`;
+      document.getElementById('easyPoints').textContent = `${easyPoints} points earned`;
+      
+      // Medium challenges
+      const mediumSolved = solvedChallenges.filter(c => c.challengeId.startsWith('medium'));
+      const mediumPoints = mediumSolved.reduce((sum, c) => {
+        const earned = (typeof c.points === 'number') ? c.points : (challengePoints[c.challengeId] || 0);
+        return sum + earned;
+      }, 0);
+      const mediumProgress = (mediumSolved.length / 3) * 100;
+      
+      document.getElementById('mediumProgress').textContent = `${mediumSolved.length}/3`;
+      document.getElementById('mediumProgressBar').style.width = `${mediumProgress}%`;
+      document.getElementById('mediumPoints').textContent = `${mediumPoints} points earned`;
+      
+      // Hard challenges
+      const hardSolved = solvedChallenges.filter(c => c.challengeId.startsWith('hard'));
+      const hardPoints = hardSolved.reduce((sum, c) => {
+        const earned = (typeof c.points === 'number') ? c.points : (challengePoints[c.challengeId] || 0);
+        return sum + earned;
+      }, 0);
+      const hardProgress = (hardSolved.length / 2) * 100;
+      
+      document.getElementById('hardProgress').textContent = `${hardSolved.length}/2`;
+      document.getElementById('hardProgressBar').style.width = `${hardProgress}%`;
+      document.getElementById('hardPoints').textContent = `${hardPoints} points earned`;
+    }
+
+    // Load recent activity
+    function loadRecentActivity() {
+      const solvedChallenges = currentUser.solvedChallenges || [];
+      const timeline = document.getElementById('activityTimeline');
+      timeline.innerHTML = '';
+      
+      if (solvedChallenges.length === 0) {
+        timeline.innerHTML = '<p class="no-activity">No activity yet. Start solving challenges!</p>';
+        return;
+      }
+      
+      // Sort by timestamp (most recent first)
+      const sortedChallenges = [...solvedChallenges].sort((a, b) => 
+        new Date(b.timestamp) - new Date(a.timestamp)
+      );
+      
+      // Take only the 5 most recent
+      const recentChallenges = sortedChallenges.slice(0, 5);
+      
+      recentChallenges.forEach(challenge => {
+        const activityItem = document.createElement('div');
+        activityItem.className = 'activity-item';
+        
+        const difficulty = challenge.challengeId.split('-')[0];
+        const difficultyIcon = difficulty === 'easy' ? '🟢' : difficulty === 'medium' ? '🟡' : '🔴';
+        
+        activityItem.innerHTML = `
+          <div class="activity-icon ${difficulty}">${difficultyIcon}</div>
+          <div class="activity-content">
+            <div class="activity-title">Solved ${challengeNames[challenge.challengeId]}</div>
+            <div class="activity-details">
+              <span class="activity-points">+${(typeof challenge.points === 'number' ? challenge.points : (challengePoints[challenge.challengeId] || 0))} points</span>
+              <span class="activity-time">${formatTimeAgo(new Date(challenge.timestamp).getTime())}</span>
+            </div>
+          </div>
+        `;
+        
+        timeline.appendChild(activityItem);
+      });
+    }
+
+    // Load solved challenges
+    function loadSolvedChallenges() {
+      const solvedChallenges = currentUser.solvedChallenges || [];
+      const challengesList = document.getElementById('challengesList');
+      challengesList.innerHTML = '';
+      
+      if (solvedChallenges.length === 0) {
+        challengesList.innerHTML = '<p class="no-challenges">No challenges solved yet. <a href="challenge.html">Start your journey!</a></p>';
+        return;
+      }
+      
+      // Group by difficulty
+      const groupedChallenges = {
+        easy: solvedChallenges.filter(c => c.challengeId.startsWith('easy')),
+        medium: solvedChallenges.filter(c => c.challengeId.startsWith('medium')),
+        hard: solvedChallenges.filter(c => c.challengeId.startsWith('hard'))
+      };
+      
+      Object.entries(groupedChallenges).forEach(([difficulty, challenges]) => {
+        if (challenges.length === 0) return;
+        
+        const difficultySection = document.createElement('div');
+        difficultySection.className = 'difficulty-section';
+        
+        const difficultyIcon = difficulty === 'easy' ? '🟢' : difficulty === 'medium' ? '🟡' : '🔴';
+        const difficultyColor = difficulty === 'easy' ? '#22c55e' : difficulty === 'medium' ? '#f59e0b' : '#ef4444';
+        
+        difficultySection.innerHTML = `
+          <h3 class="difficulty-title" style="color: ${difficultyColor}">
+            ${difficultyIcon} ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Challenges
+          </h3>
+          <div class="challenges-grid">
+            ${challenges.map(challenge => `
+              <div class="challenge-card-mini">
+                <div class="challenge-header-mini">
+                  <h4>${challengeNames[challenge.challengeId]}</h4>
+                  <span class="challenge-points">+${(typeof challenge.points === 'number' ? challenge.points : (challengePoints[challenge.challengeId] || 0))} pts</span>
+                </div>
+                <div class="challenge-timestamp">
+                  <span class="solved-date">${challenge.dateTime || new Date(challenge.timestamp).toLocaleString()}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        challengesList.appendChild(difficultySection);
+      });
+    }
+
+    // Create performance chart
+    function createPerformanceChart() {
+      const canvas = document.getElementById('performanceChart');
+      const ctx = canvas.getContext('2d');
+      
+      // Simple chart implementation (in a real app, you'd use Chart.js or similar)
+      const solvedChallenges = currentUser.solvedChallenges || [];
+      
+      if (solvedChallenges.length === 0) {
+        ctx.fillStyle = '#8892b0';
+        ctx.font = '16px Inter';
+        ctx.textAlign = 'center';
+        ctx.fillText('No data to display yet', canvas.width / 2, canvas.height / 2);
+        return;
+      }
+      
+      // Sort challenges by timestamp
+      const sortedChallenges = [...solvedChallenges].sort((a, b) => 
+        new Date(a.timestamp) - new Date(b.timestamp)
+      );
+      
+      // Calculate cumulative points
+      let cumulativePoints = 0;
+      const dataPoints = sortedChallenges.map((challenge, index) => {
+        cumulativePoints += challengePoints[challenge.challengeId] || 0;
+        return {
+          x: index,
+          y: cumulativePoints,
+          date: new Date(challenge.timestamp)
+        };
+      });
+      
+      // Draw chart
+      const padding = 40;
+      const chartWidth = canvas.width - (padding * 2);
+      const chartHeight = canvas.height - (padding * 2);
+      
+      const maxPoints = Math.max(...dataPoints.map(p => p.y));
+      const maxIndex = dataPoints.length - 1;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw axes
+      ctx.strokeStyle = '#2a3441';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(padding, padding);
+      ctx.lineTo(padding, canvas.height - padding);
+      ctx.lineTo(canvas.width - padding, canvas.height - padding);
+      ctx.stroke();
+      
+      // Draw data line
+      if (dataPoints.length > 1) {
+        ctx.strokeStyle = '#00ffcc';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        
+        dataPoints.forEach((point, index) => {
+          const x = padding + (point.x / maxIndex) * chartWidth;
+          const y = canvas.height - padding - (point.y / maxPoints) * chartHeight;
+          
+          if (index === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        });
+        
+        ctx.stroke();
+        
+        // Draw data points
+        ctx.fillStyle = '#00ffcc';
+        dataPoints.forEach(point => {
+          const x = padding + (point.x / maxIndex) * chartWidth;
+          const y = canvas.height - padding - (point.y / maxPoints) * chartHeight;
+          
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+      
+      // Draw labels
+      ctx.fillStyle = '#8892b0';
+      ctx.font = '12px Inter';
+      ctx.textAlign = 'center';
+      ctx.fillText('Progress Over Time', canvas.width / 2, 20);
+      
+      // Y-axis label
+      ctx.save();
+      ctx.translate(15, canvas.height / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText('Points', 0, 0);
+      ctx.restore();
+    }
+
+    // Edit profile functionality
+    function showEditProfile() {
+      document.getElementById('editName').value = currentUser.username;
+      document.getElementById('editEmail').value = currentUser.email;
+      document.getElementById('editBio').value = currentUser.bio || '';
+      document.getElementById('editProfileModal').style.display = 'flex';
+    }
+
+    // Updated: Edit profile form handler
+    document.getElementById('editProfileForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const newName = document.getElementById('editName').value;
+      const newEmail = document.getElementById('editEmail').value;
+      const newBio = document.getElementById('editBio').value;
+      
+      try {
+        // Update user profile on backend
+        const response = await fetch('/auth/update-profile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: newName,
+            email: newEmail,
+            bio: newBio
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // Update current user
+          currentUser.username = newName;
+          currentUser.email = newEmail;
+          currentUser.bio = newBio;
+          
+          // Update UI
+          loadProfileData();
+          closeModal('editProfileModal');
+          
+          // Show success message
+          showNotification('Profile updated successfully!', 'success');
+        } else {
+          showNotification(data.message || 'Error updating profile', 'error');
+        }
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        
+        // Fallback to localStorage update
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const updatedUsers = users.map(user => 
+          user.id === currentUser.id ? { ...user, username: newName, email: newEmail, bio: newBio } : user
+        );
+        
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        localStorage.setItem('currentUser', JSON.stringify({ ...currentUser, username: newName, email: newEmail, bio: newBio }));
+        
+        // Update current user
+        currentUser.username = newName;
+        currentUser.email = newEmail;
+        currentUser.bio = newBio;
+        
+        // Update UI
+        loadProfileData();
+        closeModal('editProfileModal');
+        
+        showNotification('Profile updated successfully!', 'success');
+      }
+    });
+
+    // Download progress
+    function downloadProgress() {
+      const progressData = {
+        name: currentUser.username,
+        email: currentUser.email,
+        joinDate: currentUser.joinDate,
+        totalScore: (currentUser.solvedChallenges || []).reduce((sum, c) => {
+          const earned = (typeof c.points === 'number') ? c.points : (challengePoints[c.challengeId] || 0);
+          return sum + earned;
+        }, 0),
+        solvedChallenges: (currentUser.solvedChallenges || []).map(c => ({
+          challenge: challengeNames[c.challengeId],
+          points: (typeof c.points === 'number') ? c.points : (challengePoints[c.challengeId] || 0),
+          solvedAt: c.dateTime || new Date(c.timestamp).toLocaleString()
+        })),
+        achievements: achievements.filter(a => a.condition(currentUser)).map(a => ({
+          name: a.name,
+          description: a.description
+        }))
+      };
+      
+      const dataStr = JSON.stringify(progressData, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${currentUser.username.replace(/\s+/g, '_')}_CTF_Progress.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      
+      showNotification('Progress exported successfully!', 'success');
+    }
+
+    // Utility functions
+    function formatDate(dateString) {
+      return new Date(dateString).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    function formatTimeAgo(timestamp) {
+      const now = new Date().getTime();
+      const diff = now - timestamp;
+      
+      const minutes = Math.floor(diff / (1000 * 60));
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      
+      if (days > 0) return `${days}d ago`;
+      if (hours > 0) return `${hours}h ago`;
+      if (minutes > 0) return `${minutes}m ago`;
+      return 'Just now';
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#22c55e' : type === 'error' ? '#ef4444' : '#00ffcc'};
+        color: #0a0a0f;
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        z-index: 2000;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Animate in
+      setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+    }
+
+    // Navigation functions
+    function showProfile() {
+      // Already on profile page
+    }
+
+    // Updated: Sign out function
+    async function signOut() {
+      try {
+        const response = await fetch('/auth/logout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          currentUser = null;
+          window.location.href = 'index.html';
+        }
+      } catch (error) {
+        console.error('Error signing out:', error);
+        // Fallback - just redirect
+        window.location.href = 'index.html';
+      }
+    }
+
+    // Close modals when clicking outside
+    window.addEventListener('click', function(e) {
+      if (e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+      }
+    });
+  </script>
+
+  <style>
+    /* CSS Variables */
+    :root {
+      --primary-green: #00ff88;
+      --primary-green-dark: #00cc6a;
+      --primary-green-glow: rgba(0, 255, 136, 0.3);
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #141419;
+      --bg-card: #1a1a20;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b3b8;
+      --text-muted: #6b7280;
+      --border-color: #2a2a35;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --shadow-primary: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --shadow-glow: 0 0 30px var(--primary-green-glow);
+    }
+    /* Profile Page Styles */
+.auth-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 10, 15, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 0;
+  z-index: 1000;
+}
+
+.auth-nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.auth-menu {
+  display: flex;
+  gap: 30px;
+}
+
+.auth-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover, 
+.auth-link.active {
+  color: var(--primary-green);
+}
+
+/* Profile Header */
+.profile-header {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 30px;
+  align-items: center;
+}
+
+.profile-avatar-large {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: var(--bg-primary);
+  box-shadow: 0 8px 32px rgba(0, 255, 204, 0.3);
+}
+
+.profile-info h1 {
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.profile-email {
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.profile-join-date {
+  color: var(--text-secondary);
+  margin: 0 0 20px 0;
+  font-size: 0.95rem;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 30px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Achievements Section */
+.achievements-section {
+  margin-bottom: 40px;
+}
+
+.achievements-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.achievement-badge {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.achievement-badge.unlocked {
+  border-color: var(--primary-green);
+  background: linear-gradient(135deg, rgba(0, 255, 204, 0.1), rgba(0, 255, 204, 0.05));
+}
+
+.achievement-badge.locked {
+  opacity: 0.6;
+  filter: grayscale(0.8);
+}
+
+.achievement-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-icon {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.achievement-info h4 {
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.achievement-info p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.achievement-checkmark {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--primary-green);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Progress Section */
+.progress-section {
+  margin-bottom: 40px;
+}
+
+.progress-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.difficulty-progress {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.difficulty-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.difficulty-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.difficulty-card.easy {
+  border-left: 4px solid #22c55e;
+}
+
+.difficulty-card.medium {
+  border-left: 4px solid #f59e0b;
+}
+
+.difficulty-card.hard {
+  border-left: 4px solid #ef4444;
+}
+
+.difficulty-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.difficulty-header h3 {
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.progress-fraction {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-green), var(--secondary-blue));
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progress-details {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Activity Section */
+.activity-section {
+  margin-bottom: 40px;
+}
+
+.activity-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.activity-timeline {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.activity-icon.easy {
+  background: rgba(34, 197, 94, 0.2);
+}
+
+.activity-icon.medium {
+  background: rgba(245, 158, 11, 0.2);
+}
+
+.activity-icon.hard {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-title {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.activity-details {
+  display: flex;
+  gap: 16px;
+  font-size: 0.9rem;
+}
+
+.activity-points {
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+.activity-time {
+  color: var(--text-secondary);
+}
+
+.no-activity {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 40px;
+  font-style: italic;
+}
+
+/* Challenges Section */
+.challenges-section {
+  margin-bottom: 40px;
+}
+
+.challenges-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.challenges-list {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.difficulty-section {
+  margin-bottom: 32px;
+}
+
+.difficulty-section:last-child {
+  margin-bottom: 0;
+}
+
+.difficulty-title {
+  margin: 0 0 16px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.challenge-card-mini {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.challenge-card-mini:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.challenge-header-mini {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.challenge-header-mini h4 {
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.challenge-points {
+  color: var(--primary-green);
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.challenge-timestamp {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.no-challenges {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 40px;
+  font-style: italic;
+}
+
+.no-challenges a {
+  color: var(--primary-green);
+  text-decoration: none;
+}
+
+.no-challenges a:hover {
+  text-decoration: underline;
+}
+
+/* Chart Section */
+.chart-section {
+  margin-bottom: 40px;
+}
+
+.chart-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.chart-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+#performanceChart {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 0 24px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+.modal-header h3 {
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.close {
+  color: var(--text-secondary);
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 0 24px 24px 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(0, 255, 204, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* Button Styles */
+.btn-primary,
+.btn-secondary {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-green), var(--secondary-blue));
+  color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 255, 204, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 255, 204, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-nav-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .auth-menu {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .profile-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .profile-stats {
+    justify-content: center;
+  }
+
+  .profile-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .achievements-grid,
+  .difficulty-progress,
+  .challenges-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .activity-details {
+    justify-content: center;
+  }
+
+  .challenge-header-mini {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .profile-header,
+  .activity-timeline,
+  .challenges-list,
+  .chart-container {
+    padding: 20px;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+}

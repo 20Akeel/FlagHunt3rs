@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flag Hunt3rs - Professional CTF Platform</title>
+  <link rel="stylesheet" href="style.css">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<meta name="description" content="Professional Capture The Flag challenges for cybersecurity enthusiasts">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h2>Flag Hunt3rs</h2>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#contact" class="nav-link">Contact Us</a>
+        <div class="auth-buttons">
+          <button class="btn-secondary" onclick="showSignIn()">Sign In</button>
+          <button class="btn-primary" onclick="showSignUp()">Sign Up</button>
+        </div>
+      </div>
+      <div class="hamburger" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="badge-icon"></span>
+            <span>New Challenge Released</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="title-main">Flag Hunt3rs</span>
+            <span class="title-subtitle">Professional CTF Platform</span>
+          </h1>
+          <p class="hero-description">Welcome to the ultimate beginner-friendly CTF arena. Test your skills, learn new techniques, and climb the leaderboard in our carefully crafted cybersecurity challenges.</p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">7</span>
+              <span class="stat-label">Live Challenges</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Active Users</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Platform Access</span>
+            </div>
+          </div>
+          <div class="hero-buttons">
+            <button class="btn-primary btn-large" onclick="showSignUp()">
+              <span class="btn-icon"></span>
+              Start Hunting
+            </button>
+            <button class="btn-secondary btn-large" onclick="scrollToSection('about')">
+              <span class="btn-icon"></span>
+              Learn More
+            </button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="terminal-container">
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <div class="terminal-buttons">
+                  <span class="btn-close"></span>
+                  <span class="btn-minimize"></span>
+                  <span class="btn-maximize"></span>        
+                </div>
+                <span class="terminal-title">hacker@flaghunt3rs:~$</span>
+              </div>
+              <div class="terminal-body">
+                <div class="terminal-line">
+                  <span class="prompt">$</span> <span class="command">whoami</span>
+                </div>
+                <div class="terminal-line">
+                  <span class="output">ethical_hacker</span>
+                </div>
+                <div class="terminal-line">
+                  <span class="prompt">$</span> <span class="command">ls challenges/</span>
+                </div>
+                <div class="terminal-line">
+                  <span class="output">web_security/ crypto/ forensics/ pwn/</span>
+                </div>
+                <div class="terminal-line">
+                  <span class="prompt">$</span> <span class="command">cat welcome.txt</span>
+                </div>
+                <div class="terminal-line">
+                  <span class="output">Welcome to Flag Hunt3rs!</span>
+                </div>
+                <div class="terminal-line">
+                  <span class="prompt">$</span> <span class="command typing">ready_to_hack?</span>
+                </div>
+                <div class="cursor"></div>
+              </div>
+            </div>
+            <div class="terminal-glow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-background">
+      <div class="floating-element" style="--delay: 0s; --x: 10%; --y: 20%;">🔒</div>
+      <div class="floating-element" style="--delay: 1s; --x: 80%; --y: 30%;">🔍</div>
+      <div class="floating-element" style="--delay: 2s; --x: 20%; --y: 70%;">⚡</div>
+      <div class="floating-element" style="--delay: 3s; --x: 90%; --y: 80%;">🛡️</div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About Our Platform</h2>
+        <p class="section-subtitle">Discover what makes Flag Hunt3rs the premier destination for cybersecurity learning</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card skill-based">
+          <div class="card-background"></div>
+          <div class="card-content">
+            <div class="card-icon">
+              <span class="icon-main"></span>
+              <div class="icon-ring"></div>
+            </div>
+            <h3>Skill-Based Learning</h3>
+            <p>Progressive challenges from beginner to advanced levels, designed to build your cybersecurity expertise step by step.</p>
+            <div class="card-features">
+              <span class="feature-tag">Beginner Friendly</span>
+              <span class="feature-tag">Progressive Learning</span>
+              <span class="feature-tag">Expert Guidance</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-card competitive">
+          <div class="card-background"></div>
+          <div class="card-content">
+            <div class="card-icon">
+              <span class="icon-main"></span>
+              <div class="icon-ring"></div>
+            </div>
+            <h3>Competitive Environment</h3>
+            <p>Track your progress on our leaderboard and compete with fellow ethical hackers from around the world.</p>
+            <div class="card-features">
+              <span class="feature-tag">Global Leaderboard</span>
+              <span class="feature-tag">Achievement System</span>
+              <span class="feature-tag">Community Driven</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-card realistic">
+          <div class="card-background"></div>
+          <div class="card-content">
+            <div class="card-icon">
+              <span class="icon-main"></span>
+              <div class="icon-ring"></div>
+            </div>
+            <h3>Real-World Scenarios</h3>
+            <p>Practice with challenges based on actual cybersecurity vulnerabilities and attack vectors.</p>
+            <div class="card-features">
+              <span class="feature-tag">Industry Standard</span>
+              <span class="feature-tag">Practical Skills</span>
+              <span class="feature-tag">Updated Content</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">⚡ Platform Features</h2>
+        <p class="section-subtitle">Everything you need to master cybersecurity</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <h4>Web Security</h4>
+          <p>XSS, SQL Injection, CSRF and more</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <h4>Cryptography</h4>
+          <p>Classical and modern encryption challenges</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <h4>Digital Forensics</h4>
+          <p>Investigate and analyze digital evidence</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <h4>Binary Exploitation</h4>
+          <p>Buffer overflows and reverse engineering</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <h4>Social Engineering</h4>
+          <p>Understand human-based attack vectors</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"></div>
+          <h4>Mobile Security</h4>
+          <p>iOS and Android application security</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">Have questions? We're here to help you on your cybersecurity journey</p>
+      </div>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-card">
+            <h3>Get in Touch</h3>
+            <p>Have questions about our platform or need support? We're here to help!</p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <div class="contact-icon"></div>
+                <div class="contact-text">
+                  <span class="contact-label">Email:</span>
+                  <span>support@flaghunt3rs.ae</span>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon"></div>
+                <div class="contact-text">
+                  <span class="contact-label">Developer:</span>
+                  <span>Hayfaa Akeil</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-container">
+          <div class="contact-form-card">
+            <h3>Send us a Message</h3>
+            <form id="contactForm" class="contact-form">
+              <div class="form-group">
+                <label for="contactName">Full Name</label>
+                <input type="text" id="contactName" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" required>
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Your Message</label>
+                <textarea id="contactMessage" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+              </div>
+              <button type="submit" class="btn-primary btn-full">
+                <span class="btn-icon"></span>
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentication Modals -->
+  <!-- Sign In Modal -->
+  <div id="signInModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Sign In</h3>
+        <span class="close" onclick="closeModal('signInModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="signInForm">
+          <div class="form-group">
+            <label for="signInEmail">Email</label>
+            <input type="email" id="signInEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="signInPassword">Password</label>
+            <input type="password" id="signInPassword" required>
+          </div>
+          <button type="submit" class="btn-primary btn-full">
+            <span class="btn-icon"></span>
+            Sign In
+          </button>
+          <p class="auth-switch">Don't have an account? <a href="#" onclick="switchToSignUp()">Sign Up</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <div id="signUpModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Join Flag Hunt3rs</h3>
+        <span class="close" onclick="closeModal('signUpModal')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form id="signUpForm">
+          <div class="form-group">
+            <label for="signUpName">Full Name</label>
+            <input type="text" id="signUpName" required>
+          </div>
+          <div class="form-group">
+            <label for="signUpEmail">Email</label>
+            <input type="email" id="signUpEmail" required>
+          </div>
+          <div class="form-group">
+            <label for="signUpPassword">Password</label>
+            <input type="password" id="signUpPassword" required>
+            <div id="password-requirements" class="password-requirements">
+              <div id="req-length" class="requirement">
+                <span class="requirement-icon">✗</span>
+                <span class="requirement-text">At least 8 characters long</span>
+              </div>
+              <div id="req-uppercase" class="requirement">
+                <span class="requirement-icon">✗</span>
+                <span class="requirement-text">At least one uppercase letter</span>
+              </div>
+              <div id="req-lowercase" class="requirement">
+                <span class="requirement-icon">✗</span>
+                <span class="requirement-text">At least one lowercase letter</span>
+              </div>
+              <div id="req-number" class="requirement">
+                <span class="requirement-icon">✗</span>
+                <span class="requirement-text">At least one number</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="signUpConfirmPassword">Confirm Password</label>
+            <input type="password" id="signUpConfirmPassword" required>
+          </div>
+          <button type="submit" class="btn-primary btn-full" id="signUpBtn" disabled>
+            <span class="btn-icon"></span>
+            Create Account
+          </button>
+          <p class="auth-switch">Already have an account? <a href="#" onclick="switchToSignIn()">Sign In</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authenticated User Navigation (Hidden by default) -->
+  <div id="authenticatedNav" class="auth-nav" style="display: none;">
+    <div class="container">
+      <div class="auth-nav-content">
+        <div class="user-info">
+          <div class="user-avatar">
+            <span class="user-initial" id="userInitial"></span>
+          </div>
+          <span id="userWelcome">Welcome, <span id="userName"></span>!</span>
+        </div>
+        <div class="auth-menu">
+          <a href="javascript:void(0)" onclick="showChallenges()" class="auth-link">Challenges</a>
+          <a href="javascript:void(0)" onclick="showLeaderboard()" class="auth-link">Leaderboard</a>
+          <a href="about-developers.html" class="auth-link">About Developer</a>
+          <a href="javascript:void(0)" onclick="showProfile()" class="auth-link">Profile</a>
+          <a href="javascript:void(0)" onclick="signOut()" class="auth-link">Sign Out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+// Global state
+let currentUser = null;
+let isAuthenticated = false;
+
+// Password validation requirements
+const passwordRequirements = {
+  length: {
+    element: null,
+    test: (password) => password.length >= 8
+  },
+  uppercase: {
+    element: null,
+    test: (password) => /[A-Z]/.test(password)
+  },
+  lowercase: {
+    element: null,
+    test: (password) => /[a-z]/.test(password)
+  },
+  number: {
+    element: null,
+    test: (password) => /[0-9]/.test(password)
+  }
+};
+
+// Function to validate password and update UI
+function validatePassword(password) {
+  let allValid = true;
+
+  Object.keys(passwordRequirements).forEach(key => {
+    const req = passwordRequirements[key];
+    if (!req.element) return;
+    
+    const isValid = req.test(password);
+    
+    if (isValid) {
+      req.element.classList.remove('invalid');
+      req.element.classList.add('valid');
+      req.element.querySelector('.requirement-icon').textContent = '✓';
+    } else {
+      req.element.classList.remove('valid');
+      req.element.classList.add('invalid');
+      req.element.querySelector('.requirement-icon').textContent = '✗';
+      allValid = false;
+    }
+  });
+
+  // Enable/disable submit button based on validation
+  const signUpBtn = document.getElementById('signUpBtn');
+  if (signUpBtn) {
+    signUpBtn.disabled = !allValid;
+  }
+  
+  return allValid;
+}
+
+// Initialize password requirements elements
+function initPasswordValidation() {
+  passwordRequirements.length.element = document.getElementById("req-length");
+  passwordRequirements.uppercase.element = document.getElementById("req-uppercase");
+  passwordRequirements.lowercase.element = document.getElementById("req-lowercase");
+  passwordRequirements.number.element = document.getElementById("req-number");
+
+  // Set initial state - mark all as invalid
+  Object.keys(passwordRequirements).forEach(key => {
+    if (passwordRequirements[key].element) {
+      passwordRequirements[key].element.classList.add('invalid');
+    }
+  });
+
+  // Add password input listener
+  const passwordInput = document.getElementById('signUpPassword');
+  if (passwordInput) {
+    passwordInput.addEventListener('input', function() {
+      validatePassword(this.value);
+    });
+  }
+}
+
+// Check if user is already signed in
+document.addEventListener('DOMContentLoaded', function() {
+  checkAuthStatus();
+  initializeAnimations();
+  initPasswordValidation();
+});
+
+// Check authentication status with backend
+async function checkAuthStatus() {
+  try {
+    const response = await fetch('/auth/status');
+    const data = await response.json();
+    
+    if (data.loggedIn) {
+      currentUser = { name: data.username };
+      isAuthenticated = true;
+      showAuthenticatedState();
+    }
+  } catch (error) {
+    console.error('Error checking auth status:', error);
+  }
+}
+
+// Initialize scroll animations and other effects
+function initializeAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  // Observe elements for scroll animations
+  document.querySelectorAll('.about-card, .feature-item, .contact-card, .contact-form-card').forEach(element => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(30px)';
+    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(element);
+  });
+
+  // Add hover effects
+  document.querySelectorAll('.about-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+}
+
+// Navigation functions
+function toggleMobileMenu() {
+  const navMenu = document.getElementById('nav-menu');
+  navMenu.classList.toggle('active');
+}
+
+function scrollToSection(sectionId) {
+  document.getElementById(sectionId).scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
+// Modal functions
+function showSignIn() {
+  document.getElementById('signInModal').style.display = 'flex';
+}
+
+function showSignUp() {
+  document.getElementById('signUpModal').style.display = 'flex';
+  // Initialize password validation when modal opens
+  setTimeout(() => initPasswordValidation(), 100);
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = 'none';
+}
+
+function switchToSignUp() {
+  closeModal('signInModal');
+  showSignUp();
+}
+
+function switchToSignIn() {
+  closeModal('signUpModal');
+  showSignIn();
+}
+
+// Authentication functions
+function showAuthenticatedState() {
+  document.querySelector('.navbar').style.display = 'none';
+  document.getElementById('authenticatedNav').style.display = 'block';
+  document.getElementById('userName').textContent = currentUser.name;
+  document.getElementById('userInitial').textContent = currentUser.name.charAt(0).toUpperCase();
+}
+
+async function signOut() {
+  try {
+    const response = await fetch('/auth/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      currentUser = null;
+      isAuthenticated = false;
+      document.querySelector('.navbar').style.display = 'block';
+      document.getElementById('authenticatedNav').style.display = 'none';
+      window.location.reload();
+    }
+  } catch (error) {
+    console.error('Error signing out:', error);
+    alert('Error signing out. Please try again.');
+  }
+}
+
+// Navigation for authenticated users
+function showChallenges() {
+  window.location.href = 'challenge.html';
+}
+
+function showLeaderboard() {
+  window.location.href = 'leaderboard.html';
+}
+
+function showProfile() {
+  window.location.href = 'profile.html';
+}
+
+// Updated Sign Up Form Handler
+document.getElementById('signUpForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const name = document.getElementById('signUpName').value;
+  const email = document.getElementById('signUpEmail').value;
+  const password = document.getElementById('signUpPassword').value;
+  const confirmPassword = document.getElementById('signUpConfirmPassword').value;
+
+  // Validate password requirements first
+  if (!validatePassword(password)) {
+    alert('Please meet all password requirements!');
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  try {
+    const response = await fetch('/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: name,
+        email: email,
+        password: password
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert('Account created successfully!');
+      closeModal('signUpModal');
+      
+      // Auto sign in
+      currentUser = { name: data.username };
+      isAuthenticated = true;
+      showAuthenticatedState();
+    } else {
+      alert(data.message || 'Error creating account');
+    }
+  } catch (error) {
+    console.error('Error during signup:', error);
+    alert('Error creating account. Please try again.');
+  }
+});
+
+// Updated Sign In Form Handler
+document.getElementById('signInForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const email = document.getElementById('signInEmail').value;
+  const password = document.getElementById('signInPassword').value;
+
+  try {
+    const response = await fetch('/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      currentUser = { name: data.username };
+      isAuthenticated = true;
+      closeModal('signInModal');
+      showAuthenticatedState();
+    } else {
+      alert(data.message || 'Invalid credentials!');
+    }
+  } catch (error) {
+    console.error('Error during signin:', error);
+    alert('Error signing in. Please try again.');
+  }
+});
+
+// Contact form handler (unchanged)
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Thank you for your message! We will get back to you soon.');
+  this.reset();
+});
+
+// Close modals when clicking outside (unchanged)
+window.addEventListener('click', function(e) {
+  if (e.target.classList.contains('modal')) {
+    e.target.style.display = 'none';
+  }
+});
+
+// Typing animation for terminal (unchanged)
+function typeText(element, text, speed = 100) {
+  let i = 0;
+  element.textContent = '';
+  
+  function type() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      // Show cursor after typing
+      setTimeout(() => {
+        const cursor = document.querySelector('.cursor');
+        if (cursor) cursor.style.display = 'inline-block';
+      }, 500);
+    }
+  }
+  
+  type();
+}
+
+// Start typing animation after page load (unchanged)
+setTimeout(() => {
+  const typingElement = document.querySelector('.typing');
+  if (typingElement) {
+    typeText(typingElement, 'ready_to_hack?', 150);
+  }
+}, 3000);
+  </script>
+
+  <style>
+    /* Password Requirements Styles */
+    .password-requirements {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .requirement {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      transition: color 0.3s ease;
+      padding: 2px 0;
+    }
+
+    .requirement-icon {
+      font-weight: bold;
+      font-size: 0.7rem;
+      min-width: 12px;
+    }
+
+    .requirement-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .requirement.invalid {
+      color: var(--danger-color);
+    }
+
+    .requirement.invalid .requirement-icon {
+      color: var(--danger-color);
+    }
+
+    .requirement.valid {
+      color: var(--success-color);
+    }
+
+    .requirement.valid .requirement-icon {
+      color: var(--success-color);
+    }
+
+    /* CSS Variables */
+    :root {
+      --primary-green: #00ff88;
+      --primary-green-dark: #00cc6a;
+      --primary-green-glow: rgba(0, 255, 136, 0.3);
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #141419;
+      --bg-card: #1a1a20;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b3b8;
+      --text-muted: #6b7280;
+      --border-color: #2a2a35;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --shadow-primary: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --shadow-glow: 0 0 30px var(--primary-green-glow);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Enhanced Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo h2 {
+      margin: 0;
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 20px var(--primary-green-glow);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-green);
+      text-shadow: 0 0 10px var(--primary-green-glow);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-green), var(--primary-green-dark));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Enhanced Buttons */
+    .btn-primary, .btn-secondary {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+      color: var(--bg-primary);
+      box-shadow: 0 4px 15px var(--primary-green-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px var(--primary-green-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary-green);
+      border: 2px solid var(--primary-green);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-green);
+      color: var(--bg-primary);
+      box-shadow: 0 0 20px var(--primary-green-glow);
+    }
+
+    .btn-large {
+      padding: 16px 32px;
+      font-size: 1.1rem;
+    }
+
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Enhanced Hero Section */
+    .hero {
+      padding: 120px 0 80px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+      color: var(--bg-primary);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .hero-title {
+      margin-bottom: 20px;
+    }
+
+    .title-main {
+      display: block;
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px var(--primary-green-glow);
+      line-height: 1.1;
+    }
+
+    .title-subtitle {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-top: 10px;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-shadow: 0 0 20px var(--primary-green-glow);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    /* Enhanced Terminal */
+    .terminal-container {
+      position: relative;
+    }
+
+    .terminal-window {
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      box-shadow: var(--shadow-primary);
+      position: relative;
+      z-index: 2;
+    }
+
+    .terminal-header {
+      background: var(--bg-secondary);
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .terminal-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .terminal-buttons span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .btn-close { background: #ff5f56; }
+    .btn-minimize { background: #ffbd2e; }
+    .btn-maximize { background: #27ca3f; }
+
+    .terminal-title {
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    .terminal-body {
+      padding: 20px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 0.9rem;
+      min-height: 200px;
+    }
+
+    .terminal-line {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .prompt {
+      color: var(--primary-green);
+      margin-right: 8px;
+    }
+
+    .command {
+      color: var(--text-primary);
+    }
+
+    .output {
+      color: var(--text-secondary);
+    }
+
+    .cursor {
+      display: none;
+      width: 2px;
+      height: 16px;
+      background: var(--primary-green);
+      margin-left: 2px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .terminal-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      background: radial-gradient(circle, var(--primary-green-glow) 0%, transparent 70%);
+      opacity: 0.3;
+      animation: glow-pulse 3s infinite;
+      z-index: 1;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Floating Elements */
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .floating-element {
+      position: absolute;
+      font-size: 2rem;
+      color: var(--primary-green);
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+      animation-delay: var(--delay);
+      left: var(--x);
+      top: var(--y);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Enhanced About Section */
+    .about-section {
+      padding: 100px 0;
+      background: var(--bg-secondary);
+      position: relative;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .about-card {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-primary);
+    }
+
+    .card-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.05;
+      transition: opacity 0.3s ease;
+    }
+
+    .skill-based .card-background {
+      background: linear-gradient(135deg, #00ffcc, #00b894);
+    }
+
+    .competitive .card-background {
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    }
+
+    .realistic .card-background {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    }
+
+    .about-card:hover .card-background {
+      opacity: 0.1;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .card-icon {
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .icon-main {
+      font-size: 4rem;
+      display: block;
+    }
+
+    .icon-ring {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border: 2px solid var(--primary-green);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: pulse-ring 2s infinite;
+    }
+
+    .about-card h3 {
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .about-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .card-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .feature-tag {
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+      color: var(--bg-primary);
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 100px 0;
+      background: var(--bg-primary);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .feature-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--primary-green-glow), transparent);
+      transition: left 0.5s;
+    }
+
+    .feature-item:hover::before {
+      left: 100%;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-glow);
+      border-color: var(--primary-green);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .feature-item h4 {
+      color: var(--primary-green);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .feature-item p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Enhanced Contact Section */
+    .contact-section {
+      padding: 100px 0;
+      background: var(--bg-secondary);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-top: 60px;
+    }
+
+    .contact-card, .contact-form-card {
+      background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow-primary);
+    }
+
+    .contact-card h3, .contact-form-card h3 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .contact-card p {
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      line-height: 1.7;
+    }
+
+    .contact-details {
+      margin-bottom: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: var(--bg-primary);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-green);
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      width: 40px;
+      text-align: center;
+    }
+
+    .contact-text {
+      flex: 1;
+    }
+
+    .contact-label {
+      display: block;
+      font-weight: 600;
+      color: var(--primary-green);
+      font-size: 0.9rem;
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px var(--primary-green-glow);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Enhanced Modals */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      width: 90%;
+      max-width: 450px;
+      position: relative;
+      box-shadow: var(--shadow-primary);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 25px 30px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-secondary);
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: 1.3rem;
+    }
+
+    .close {
+      font-size: 24px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .close:hover {
+      color: var(--text-primary);
+      background: var(--bg-primary);
+    }
+
+    .modal-body {
+      padding: 30px;
+    }
+
+    .auth-switch {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .auth-switch a {
+      color: var(--primary-green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .auth-switch a:hover {
+      text-shadow: 0 0 10px var(--primary-green-glow);
+    }
+
+    /* Auth Navigation */
+    .auth-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    .auth-nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-green-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--bg-primary);
+    }
+
+    .auth-menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    .auth-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .auth-link:hover {
+      color: var(--primary-green);
+      text-shadow: 0 0 10px var(--primary-green-glow);
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-primary);
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .title-main {
+        font-size: 2.5rem;
+      }
+
+      .hero-stats {
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .contact-content,
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--bg-card);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: var(--shadow-primary);
+        padding: 30px 0;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .auth-buttons {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 20px;
+        gap: 10px;
+      }
+
+      .auth-menu {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .about-card, .contact-card, .contact-form-card {
+        padding: 30px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 100px 0 60px;
+      }
+
+      .title-main {
+        font-size: 2rem;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .modal-content {
+        width: 95%;
+      }
+
+      .modal-header, .modal-body {
+        padding: 20px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
